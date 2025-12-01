@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Response Simulator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+        }
+        #container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .box {
+            width: 32%;
+            padding: 20px;
+            background: #1e293b;
+            border-radius: 10px;
+        }
+        pre {
+            background: black;
+            padding: 10px;
+            border-radius: 8px;
+            height: 250px;
+            overflow-y: scroll;
+        }
+        button {
+            background: #38bdf8;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        #stepDisplay {
+            background: black;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 150px;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🛡 Cyber Incident Response Simulator</h1>
+
+<div id="container">
+
+    <div class="box">
+        <h2>Select Scenario</h2>
+
+        <select id="scenarioSelect">
+            <option value="">-- Choose Scenario --</option>
+            <option value="phishing">1. Phishing Attack</option>
+            <option value="bruteforce">2. Brute Force Attack</option>
+            <option value="malware">3. Malware Infection</option>
+            <option value="dos">4. Denial of Service (DoS)</option>
+            <option value="databreach">5. Data Breach</option>
+            <option value="ransomware">6. Ransomware Attack</option>
+        </select>
+
+        <button onclick="loadScenario()">Load Scenario</button>
+    </div>
+
+    <div class="box">
+        <h2>Attack Logs</h2>
+        <pre id="logs">Select a scenario to see logs...</pre>
+    </div>
+
+    <div class="box">
+        <h2>Response Steps</h2>
+        <button onclick="nextStep()">Next Step</button>
+        <div id="stepDisplay">Click next step to start...</div>
+    </div>
+
+</div>
+
+<script>
+let scenarioData = {};
+let currentScenario = null;
+let stepIndex = 0;
+
+// Load scenarios.json
+fetch("scenarios.json")
+    .then(response => response.json())
+    .then(data => {
+        scenarioData = data;
+        console.log("Scenarios Loaded");
+    });
+
+function loadScenario() {
+    const selected = document.getElementById("scenarioSelect").value;
+
+    if (!selected) {
+        alert("Please select a scenario!");
+        return;
+    }
+
+    currentScenario = scenarioData[selected];
+    stepIndex = 0;
+
+    // Select random log variation
+    let randomIndex = Math.floor(Math.random() * currentScenario.logs.length);
+    let chosenLogs = currentScenario.logs[randomIndex];
+
+    document.getElementById("logs").textContent = chosenLogs;
+    document.getElementById("stepDisplay").textContent = "Click next step to begin...";
+}
+
+function nextStep() {
+    if (!currentScenario) {
+        alert("Load a scenario first!");
+        return;
+    }
+
+    if (stepIndex >= currentScenario.steps.length) {
+        document.getElementById("stepDisplay").textContent = "✔ All steps completed!";
+        return;
+    }
+
+    document.getElementById("stepDisplay").textContent = currentScenario.steps[stepIndex];
+    stepIndex++;
+}
+</script>
+
+</body>
+</html>

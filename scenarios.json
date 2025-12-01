@@ -1,0 +1,91 @@
+{
+    "phishing": {
+        "logs": [
+            "[12:03:11] Suspicious email received.\n[12:04:00] User clicked malicious link.\n[12:04:17] Credential harvesting page detected.",
+            "[10:22:55] Spoofed email from HR department.\n[10:23:30] Attachment downloaded: payroll_update.exe\n[10:24:00] Email reported by another user.",
+            "[09:55:20] Fake login portal detected.\n[09:56:01] 4 users clicked same mail.\n[09:57:30] URL blacklisted by firewall."
+        ],
+        "steps": [
+            "Analyze email headers for origin.",
+            "Reset compromised user's password.",
+            "Block sender domain and phishing link.",
+            "Review system logs for suspicious access.",
+            "Enable multi-factor authentication."
+        ]
+    },
+
+    "bruteforce": {
+        "logs": [
+            "[02:13:44] 50 failed login attempts from IP 45.122.88.12.\n[02:14:20] Account temporarily locked.",
+            "[04:55:11] Automated login attempts detected.\n[04:55:50] Password attempt frequency extremely high.",
+            "[01:33:22] Brute force attack signature detected.\n[01:33:40] SSH login attempts failed repeatedly."
+        ],
+        "steps": [
+            "Investigate the failed login activity.",
+            "Block the attacking IP or subnet.",
+            "Enable lockout and throttling policies.",
+            "Check for signs of account compromise.",
+            "Recommend strong password policy + MFA."
+        ]
+    },
+
+    "malware": {
+        "logs": [
+            "[09:22:10] File downloaded: invoice.pdf.exe\n[09:23:05] Malicious process detected.\n[09:23:30] System slowdown observed.",
+            "[14:11:22] Unauthorized script executed.\n[14:12:10] Registry modification attempt.\n[14:12:50] Antivirus quarantine triggered.",
+            "[08:15:00] Suspicious .zip extracted.\n[08:15:40] Hidden script running.\n[08:16:10] Malware connected to 113.90.14.2."
+        ],
+        "steps": [
+            "Isolate the infected device.",
+            "Run a full malware scan.",
+            "Quarantine or delete infected files.",
+            "Check persistence & restore system.",
+            "Patch vulnerabilities and educate user."
+        ]
+    },
+
+    "dos": {
+        "logs": [
+            "[15:10:00] Traffic spike detected.\n[15:10:30] CPU usage extremely high.\n[15:11:10] Requests from same subnet.",
+            "[12:47:20] Massive SYN packets detected.\n[12:47:55] Server response dropped.\n[12:48:30] Firewall alert: SYN Flood.",
+            "[17:33:00] Unusual UDP packet flood.\n[17:33:40] Application slowdown.\n[17:34:20] DoS suspected."
+        ],
+        "steps": [
+            "Monitor abnormal network traffic.",
+            "Block malicious IP ranges.",
+            "Enable firewall rate limiting.",
+            "Failover to backup server if needed.",
+            "Enable long-term DDoS protection."
+        ]
+    },
+
+    "databreach": {
+        "logs": [
+            "[21:33:10] Customer data accessed from unknown IP.\n[21:34:00] Database dump attempt.\n[21:35:20] Large outbound traffic.",
+            "[19:02:40] Unauthorized admin login.\n[19:03:10] Privilege escalation detected.\n[19:04:00] Data transfer spike observed.",
+            "[03:12:30] Database user compromised.\n[03:13:50] Data extraction command executed.\n[03:14:40] Log tampering attempt detected."
+        ],
+        "steps": [
+            "Identify source and time of breach.",
+            "Disconnect affected systems.",
+            "Reset database and admin credentials.",
+            "Notify legal and management teams.",
+            "Strengthen access controls & SIEM monitoring."
+        ]
+    },
+
+    "ransomware": {
+        "logs": [
+            "[07:12:40] Suspicious file 'decrypt_me.exe' executed.\n[07:13:10] Files renamed to .locked\n[07:14:00] Ransom note found.",
+            "[11:45:20] Unauthorized PowerShell script.\n[11:45:55] Rapid file encryption observed.\n[11:46:30] Network shares encrypted.",
+            "[03:22:10] Unknown high CPU usage.\n[03:22:40] Files encrypted real-time.\n[03:23:15] Ransom note placed on Desktop."
+        ],
+        "steps": [
+            "Immediately isolate infected system.",
+            "Terminate ransomware process safely.",
+            "Restore files from backup.",
+            "Run ransomware removal tools.",
+            "Strengthen backup & endpoint protection policies."
+        ]
+    }
+}
